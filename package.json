@@ -6,6 +6,13 @@
     "url": "zcong1993/md2pdf",
     "type": "git"
   },
+  "files": [
+    "bin",
+    "libs",
+    "css",
+    "templates"
+  ],
+  "bin": "bin/md2pdf.js",
   "scripts": {
     "test": "npm run lint",
     "lint": "xo",
