@@ -18,8 +18,8 @@ module.exports = (source, flags = {}) => {
     .then(() => execa.shell('ebook-convert --version'))
     .then(() => fs.copy(self('css'), path.resolve(tmpPath, 'css')))
     .then(() => {
-      if (fso.existsSync(self('assets'))) {
-        return fs.copy(self('assets'), path.resolve(tmpPath, 'assets'))
+      if (fso.existsSync(cwd('assets'))) {
+        return fs.copy(cwd('assets'), path.resolve(tmpPath, 'assets'))
       }
       return Promise.resolve(true)
     })
