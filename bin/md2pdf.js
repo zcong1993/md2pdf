@@ -52,7 +52,10 @@ const opts = {
 }
 
 run(source, opts)
-  .then(() => console.log(`\n ${chalk.gray.bgGreen.bold('success')} Done, pdf file generate is ${opts.output}\n`))
+  .then(() => {
+    console.log(`\n ${chalk.gray.bgGreen.bold('success')} Done, pdf file generate is ${opts.output}\n`)
+    process.exit(0)
+  })
   .catch(err => {
     if (/ebook-convert/.test(err.message)) {
       console.log(chalk.blue(`\nebook-convert is required, make sure you have installed Calibre, and set into path correctly. \n`))
