@@ -2,7 +2,7 @@
 
 > markdown to pdf
 
-[![NPM version](https://img.shields.io/npm/v/mdtopdf.svg?style=flat-square)](https://npmjs.com/package/mdtopdf) [![NPM downloads](https://img.shields.io/npm/dm/mdtopdf.svg?style=flat-square)](https://npmjs.com/package/mdtopdf) [![Build Status](https://img.shields.io/circleci/project/egoist/mdtopdf/master.svg?style=flat-square)](https://circleci.com/gh/egoist/mdtopdf)
+[![NPM version](https://img.shields.io/npm/v/mdtopdf.svg?style=flat-square)](https://npmjs.com/package/mdtopdf) [![NPM downloads](https://img.shields.io/npm/dm/mdtopdf.svg?style=flat-square)](https://npmjs.com/package/mdtopdf) [![Build Status](https://img.shields.io/circleci/project/egoist/mdtopdf/master.svg?style=flat-square)](https://circleci.com/gh/egoist/md2pdf)
 
 ## Install
 

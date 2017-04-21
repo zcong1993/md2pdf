@@ -1,13 +1,16 @@
+const path = require('path')
+const os = require('os')
 const fs = require('fs-promise')
 const execa = require('execa')
 const transform = require('./transform')
 const createCmd = require('./cmd')
-const { cwd, root } = require('./utils')
+const { cwd } = require('./utils')
 
 module.exports = (source, flags = {}) => {
   const html = cwd(source)
-  const tmpfile = root('.tmp/tmp.html')
-  const tmpPdf = root('.tmp/tmp.pdf')
+  const tmpPath = os.tmpdir()
+  const tmpfile = path.resolve(tmpPath, 'tmp.html')
+  const tmpPdf = path.resolve(tmpPath, 'tmp.pdf')
   return transform(html, tmpfile)
     .then(() => execa.shell('ebook-convert --version'))
     .then(() => {
