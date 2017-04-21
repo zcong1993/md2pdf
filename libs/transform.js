@@ -1,8 +1,8 @@
-const path = require('path')
 const fs = require('fs-promise')
 const marked3 = require('marked3')
 const handlebars = require('handlebars')
 const Prism = require('prismjs')
+const { self } = require('./utils')
 
 // override render method
 const renderer = new marked3.Renderer()
@@ -18,17 +18,17 @@ renderer.link = (href, title, text) => {
   return out
 }
 
-renderer.image = (href, title, text) => {
-  if (!/^http/.test(href)) { // eslint-disable-line unicorn/prefer-starts-ends-with
-    href = path.resolve(__dirname, href)
-  }
-  let out = `<img src="${href}" alt="${text}"`
-  if (title) {
-    out += ` title="${title}"`
-  }
-  out += '>'
-  return out
-}
+// renderer.image = (href, title, text) => {
+//   if (!/^http/.test(href)) { // eslint-disable-line unicorn/prefer-starts-ends-with
+//     href = path.resolve(__dirname, '..', href)
+//   }
+//   let out = `<img src="${href}" alt="${text}"`
+//   if (title) {
+//     out += ` title="${title}"`
+//   }
+//   out += '>'
+//   return out
+// }
 
 module.exports = (source, dest) => {
   return fs.readFile('./templates/template.html', 'utf8')
@@ -40,9 +40,18 @@ module.exports = (source, dest) => {
         highlight: (code, lang) => Prism.highlight(code, Prism.languages[lang] || Prism.languages.markup)
       })
 
+      const defaultStyles = [
+        'css/pdf.css',
+        'css/highlight/ebook.css',
+        'css/highlight/prism.css'
+      ]
+
+      const styles = Array.from(defaultStyles, x => self(x))
+
       const html = template({
         title: 'readme',
-        content
+        content,
+        styles
       })
 
       return fs.writeFile(dest, html)

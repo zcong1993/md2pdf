@@ -5,3 +5,6 @@ dist
 yarn.lock
 .tmp
 **/*.pdf
+fixture.md
+*.jpg
+assets
