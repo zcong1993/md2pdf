@@ -2,19 +2,20 @@
 
 > markdown to pdf
 
-- hello
-- world
+## Install
 
-```js
-const marked3 = require('marked3')
+```bash
+$ yarn global add md2pdf
+# or
+$ npm install md2pdf -g
+```
 
-const html = marked3(`## hello world
+## Usage
 
-A modern **markdown** parser!
-
-- [ ] todo
-- [x] done
-`)
+```bash
+$ md2pdf <markdown file> [options]
+# show help
+$ md2pdf -h
 ```
 
 ## License

@@ -7,7 +7,7 @@ module.exports = opts => {
     fontFamily: 'Arial',
     paperSize: 'a4'
   }
-  const options = Object.assign(defaultOpts, opts)
+  const options = Object.assign({}, defaultOpts, opts)
 
   return fs.readFile('./templates/cmd.tpl', 'utf8')
     .then(tpl => {

@@ -1,5 +1,5 @@
-const fs = require('fs-promise')
 const path = require('path')
+const fs = require('fs-promise')
 const marked3 = require('marked3')
 const handlebars = require('handlebars')
 const Prism = require('prismjs')
@@ -19,7 +19,7 @@ renderer.link = (href, title, text) => {
 }
 
 renderer.image = (href, title, text) => {
-  if (!/^http/.test(href)) {
+  if (!/^http/.test(href)) { // eslint-disable-line unicorn/prefer-starts-ends-with
     href = path.resolve(__dirname, href)
   }
   let out = `<img src="${href}" alt="${text}"`
