@@ -1,5 +1,5 @@
 {
-  "name": "md2pdf",
+  "name": "mdtopdf",
   "version": "0.0.1",
   "description": "markdown file to pdf",
   "repository": {
@@ -12,7 +12,10 @@
     "css",
     "templates"
   ],
-  "bin": "bin/md2pdf.js",
+  "bin": {
+    "md2pdf": "bin/md2pdf.js",
+    "mdtopdf": "bin/md2pdf.js"
+  },
   "scripts": {
     "test": "npm run lint",
     "lint": "xo",
