@@ -31,7 +31,7 @@ renderer.link = (href, title, text) => {
 // }
 
 module.exports = (source, dest) => {
-  return fs.readFile('./templates/template.html', 'utf8')
+  return fs.readFile(self('templates/template.html'), 'utf8')
     .then(tpl => {
       const template = handlebars.compile(tpl)
 
@@ -40,18 +40,17 @@ module.exports = (source, dest) => {
         highlight: (code, lang) => Prism.highlight(code, Prism.languages[lang] || Prism.languages.markup)
       })
 
-      const defaultStyles = [
-        'css/pdf.css',
-        'css/highlight/ebook.css',
-        'css/highlight/prism.css'
-      ]
+      // const defaultStyles = [
+      //   'css/pdf.css',
+      //   'css/highlight/ebook.css',
+      //   'css/highlight/prism.css'
+      // ]
 
-      const styles = Array.from(defaultStyles, x => self(x))
+      // const styles = Array.from(defaultStyles, x => self(x))
 
       const html = template({
         title: 'readme',
-        content,
-        styles
+        content
       })
 
       return fs.writeFile(dest, html)
