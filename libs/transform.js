@@ -1,3 +1,4 @@
+const path = require('path')
 const fs = require('fs-promise')
 const marked3 = require('marked3')
 const handlebars = require('handlebars')
@@ -49,7 +50,7 @@ module.exports = (source, dest) => {
       // const styles = Array.from(defaultStyles, x => self(x))
 
       const html = template({
-        title: 'readme',
+        title: path.basename(source, '.md') || 'index',
         content
       })
 

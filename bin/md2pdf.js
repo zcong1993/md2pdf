@@ -44,6 +44,11 @@ if (!source) {
   process.exit(1)
 }
 
+if (!source.endsWith('.md')) {
+  console.log(`\n ${chalk.gray.bgRed.bold('error')} Only support '.md' file! \n`)
+  process.exit(1)
+}
+
 const opts = {
   output: argv.output,
   fontSize: argv.fontSize,
