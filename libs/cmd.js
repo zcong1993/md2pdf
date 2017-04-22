@@ -4,7 +4,7 @@ const { self } = require('./utils')
 
 module.exports = opts => {
   const defaultOpts = {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: 'Arial',
     paperSize: 'a4'
   }

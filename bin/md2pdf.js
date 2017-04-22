@@ -16,7 +16,7 @@ const cli = yargs
   })
   .option('font-size', {
     description: 'font size',
-    default: 16
+    default: 14
   })
   .option('font-family', {
     description: 'font family',
