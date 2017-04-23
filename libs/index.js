@@ -14,7 +14,7 @@ module.exports = (source, flags = {}) => {
   // console.log(tmpPath)
   const tmpfile = path.resolve(tmpPath, 'tmp.html')
   const tmpPdf = path.resolve(tmpPath, 'tmp.pdf')
-  return transform(html, tmpfile)
+  return transform(html, tmpfile, flags)
     .then(() => execa.shell('ebook-convert --version'))
     .then(() => fs.copy(self('css'), path.resolve(tmpPath, 'css')))
     .then(() => {

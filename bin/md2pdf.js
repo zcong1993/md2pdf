@@ -29,6 +29,15 @@ const cli = yargs
     default: 'a4',
     choices: ['a0', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'b0', 'b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'legal', 'letter']
   })
+  .option('no-page-numbers', {
+    description: 'no page numbers',
+    default: false,
+    type: 'boolean'
+  })
+  .option('css', {
+    description: 'external css file',
+    type: 'string'
+  })
   .version(pkg.version)
   .alias('v', 'version')
   .alias('h', 'help')
@@ -61,8 +70,13 @@ const opts = {
   output: argv.output,
   fontSize: argv.fontSize,
   fontFamily: argv.fontFamily,
-  paperSize: argv.paperSize
+  paperSize: argv.paperSize,
+  noPageNumbers: argv.noPageNumbers,
+  css: argv.css
 }
+// debug
+// console.log(argv)
+// process.exit(0)
 
 run(source, opts)
   .then(() => {
@@ -70,9 +84,11 @@ run(source, opts)
     process.exit(0)
   })
   .catch(err => {
-    if (/ebook-convert/.test(err.message)) {
+    if (/ebook-convert --version/.test(err.message)) {
       console.log(chalk.blue(`\nebook-convert is required, make sure you have installed Calibre, and set into path correctly. \n`))
       console.log(chalk.yellow(`Or you can install it from Calibre: https://calibre-ebook.com\n`))
+    } else if (/markup on page breaks and flow limits/.test(err.message)) {
+      console.log(`\n ${chalk.gray.bgRed.bold('error')} Maybe external css not work\n`)
     } else {
       console.log(`\n ${chalk.gray.bgRed.bold('error')} ${err.message} \n`)
     }

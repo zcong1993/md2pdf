@@ -31,7 +31,7 @@ renderer.link = (href, title, text) => {
 //   return out
 // }
 
-module.exports = (source, dest) => {
+module.exports = (source, dest, opts = {}) => {
   return fs.readFile(self('templates/template.html'), 'utf8')
     .then(tpl => {
       const template = handlebars.compile(tpl)
@@ -41,18 +41,10 @@ module.exports = (source, dest) => {
         highlight: (code, lang) => Prism.highlight(code, Prism.languages[lang] || Prism.languages.markup)
       })
 
-      // const defaultStyles = [
-      //   'css/pdf.css',
-      //   'css/highlight/ebook.css',
-      //   'css/highlight/prism.css'
-      // ]
-
-      // const styles = Array.from(defaultStyles, x => self(x))
-
-      const html = template({
+      const html = template(Object.assign({}, {
         title: path.basename(source, '.md') || 'index',
         content
-      })
+      }, opts))
 
       return fs.writeFile(dest, html)
     })
