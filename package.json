@@ -39,6 +39,9 @@
   },
   "xo": {
     "esnext": true,
-    "extends": "rem"
+    "extends": "rem",
+    "ignores": [
+      "docs"
+    ]
   }
 }
