@@ -41,7 +41,7 @@
     "esnext": true,
     "extends": "rem",
     "ignores": [
-      "docs"
+      "docs/**"
     ]
   }
 }
