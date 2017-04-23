@@ -16,15 +16,18 @@ const cli = yargs
   })
   .option('font-size', {
     description: 'font size',
-    default: 14
+    default: 12,
+    type: 'number'
   })
   .option('font-family', {
     description: 'font family',
-    default: 'Arial'
+    default: 'Arial',
+    type: 'string'
   })
   .option('paper-size', {
     description: 'paper size',
-    default: 'a4'
+    default: 'a4',
+    choices: ['a0', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'b0', 'b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'legal', 'letter']
   })
   .version(pkg.version)
   .alias('v', 'version')
@@ -39,13 +42,18 @@ const argv = cli.argv
 const source = argv._[0]
 
 if (!source) {
-  console.log(`\n ${chalk.gray.bgRed.bold('error')} source file is required! \n`)
+  console.log(`\n ${chalk.gray.bgRed.bold('error')} Source file is required! \n`)
   cli.showHelp()
   process.exit(1)
 }
 
 if (!source.endsWith('.md')) {
   console.log(`\n ${chalk.gray.bgRed.bold('error')} Only support '.md' file! \n`)
+  process.exit(1)
+}
+
+if (isNaN(argv.fontSize)) {
+  console.log(`\n ${chalk.gray.bgRed.bold('error')} Option '--font-size' should be a number! \n`)
   process.exit(1)
 }
 
