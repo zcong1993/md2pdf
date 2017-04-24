@@ -1,22 +1,29 @@
 # md2pdf
 
-> 一个转换单个markdown文件为pdf文件的工具
+> generate pdf file from single markdown file
 
 ## Features
 
-- 小巧快速
-- 自定制样式
-- 支持图片
+- tiny and effective
+- external custom css style
+- support images
+
+## FAQ
+
+### Is there any differences from `gitbook`？
+
+same: some css style and layout are forked from gitbook, and both are using `ebook-convert` to generate pdf file.
+
+differences: `gitbook` can not work with single file ，and we using different libs for `markdown parser` and `highlight`.
 
 ## How does it work
 
-使用[marked3](https://github.com/egoist/marked3)将`.md`文件转换成`html`，并用[prism](https://github.com/PrismJS/prism)高亮渲染，最后通过`ebook-convert`将`html`转换为`pdf`文件。
+First, we use [marked3](https://github.com/egoist/marked3) transfer `.md` file into `html`，meanwhile make highlight by [prism](https://github.com/PrismJS/prism), then generate pdf file by `ebook-convert` from `html` file。
 
 ## Install
 
 <p class="warning">
-  本工具生成pdf依赖`ebook-convert`。
-  所以你应当[安装calibre](/ebook)。
+  The tools depend on `ebook-convert`, so you should [install calibre](/ebook) first.
 </p>
 
 ```bash
@@ -33,10 +40,10 @@ $ md2pdf <md file> [options]
 $ md2pdf --help
 ```
 <p class="tip">
-  你的资源文件应该放在`assets`文件夹中。比如图片和`css`文件仅仅放在`assets`文件夹中才会生效。
+  Your external resource file should put in `assets` folder, such as `css` and `images` files. And only in this way, it works well.
 </p>
 
-你的文件目录应该是这样：
+So your workspace folder will like this：
 
 ```
 folder
@@ -55,11 +62,15 @@ usage: `--output`
 
 type: string
 
-description: 输出文件名
+description: out put file name
 
 default: `index.pdf`
 
 alias: -o
+
+<p class="tip">
+  Your should set this options endswith `.pdf`, so you can open it correctly.
+</p>
 
 ### font-size
 
@@ -67,7 +78,7 @@ usage: `--font-size`
 
 type: `number`
 
-description: 字体大小
+description: font size
 
 default: `12`
 
@@ -79,7 +90,7 @@ usage: `--font-family`
 
 type: `string`
 
-description: 字体类型
+description: font family we use
 
 default: `Arial`
 
@@ -89,13 +100,13 @@ usage: `--paper-size`
 
 type: `string`
 
-description: 纸张规格
+description: paper size
 
 default: `a4`
 
 alias: `-p`
 
-你可以选择以下类型的一种：`['a0', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'b0', 'b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'legal', 'letter']`
+You can choose one of these：`['a0', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'b0', 'b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'legal', 'letter']`
 
 ### no-page-numbers
 
@@ -103,7 +114,7 @@ usage: `---no-page-numbers`
 
 type: `bool`
 
-description: 不显示页码
+description: not render page numbers
 
 default: `false`
 
@@ -113,10 +124,10 @@ usage: `--css`
 
 type: `string`
 
-description: 额外自定制样式
+description: external css style
 
-default: 无
+default: none
 
 <p class="warning">
-  `css`某些样式会报错，例如，我遇到过`prism`的`dark theme`出错。
+  Some `css` style maybe throw error in rendering. It throw error when I use `dark theme` of `prism`.
 </p>
